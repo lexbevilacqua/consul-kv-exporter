@@ -55,9 +55,11 @@ function export_consul_kv()  {
     echo "# Start exporter..."
     echo "################################################"
 
+    export PROJECT=`echo $GIT_URL | sed -e 's/.*\///g' | cut -d'.' -f1`
+    rm -rf "${DIR}/${PROJECT}" 2> /dev/null
+
     echo "Cloning..."
     git clone $GIT_URL
-    export PROJECT=`echo $GIT_URL | sed -e 's/.*\///g' | cut -d'.' -f1`
     
     echo "Switch to dir: ${DIR}/${PROJECT}"
     cd "${DIR}/${PROJECT}"
