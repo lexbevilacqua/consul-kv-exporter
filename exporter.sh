@@ -72,11 +72,16 @@ function export_consul_kv()  {
    
     cat ${ENVIROMENT}.json
 
-    echo "git adding changes"
-    git add .
+    if [ -s ${ENVIROMENT}.json ]
+    then
 
-    echo "git commit and push (if necessary)"
-    git commit -m "${MESSAGE}" && git push
+        echo "git adding changes"
+        git add .
+
+        echo "git commit and push (if necessary)"
+        git commit -m "${MESSAGE}" && git push
+
+    fi
 
     echo "Removing project dir"
     cd ${DIR}
